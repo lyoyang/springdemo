@@ -2,8 +2,10 @@ package com.lyoyang.config;
 
 
 import com.lyoyang.BaseTest;
+import com.lyoyang.entity.Student;
 import com.lyoyang.entity.User;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainConfigTest {
@@ -22,5 +24,19 @@ public class MainConfigTest {
             System.out.println(beanName);
         }
     }
+
+
+    @Test
+    public void test_copyUtil() {
+        User user = new User();
+        Student student = new Student();
+        student.setId(12);
+        student.setAge(23);
+        student.setGender("male");
+        student.setName("tom");
+        BeanUtils.copyProperties(student, user);
+        System.out.println(user);
+    }
+
 
 }
