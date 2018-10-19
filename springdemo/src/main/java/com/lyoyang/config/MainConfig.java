@@ -16,7 +16,7 @@ public class MainConfig {
 
     @Bean
     public User user() {
-        return new User("jim", 23);
+        return new User();
     }
 
 

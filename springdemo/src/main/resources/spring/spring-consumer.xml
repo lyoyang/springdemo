@@ -11,11 +11,15 @@
     <dubbo:application name="spring-web"  />
 
     <!-- 使用multicast广播注册中心暴露服务地址 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+    <dubbo:registry id="appCenter" address="zookeeper://127.0.0.1:2181" />
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20881" />
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:reference id="userService" interface="com.lyoyang.service.UserService"  />
+    <dubbo:reference id="userService" retries="0" timeout="10000"
+                     check="false"
+                     interface="com.lyoyang.service.UserService"
+                     registry="appCenter"
+                     version="1.0.0"/>
 </beans>

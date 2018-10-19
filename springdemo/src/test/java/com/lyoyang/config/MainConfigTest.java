@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.ArrayList;
+
 public class MainConfigTest {
 
     @Test
@@ -28,7 +30,7 @@ public class MainConfigTest {
 
     @Test
     public void test_copyUtil() {
-        User user = new User();
+        User user = null;
         Student student = new Student();
         student.setId(12);
         student.setAge(23);
@@ -36,6 +38,22 @@ public class MainConfigTest {
         student.setName("tom");
         BeanUtils.copyProperties(student, user);
         System.out.println(user);
+    }
+
+    @Test
+    public void test_listCopy() {
+        ArrayList<Student> list = new ArrayList<>();
+        Student s1 = new Student(1, "jim", 12, "male");
+        Student s2 = new Student(2, "bob", 13, "male");
+        Student s3 = new Student(3, "alice", 16, "female");
+        list.add(s1);
+        list.add(s2);
+        list.add(s3);
+        User user = new User();
+        for(int i = 0; i<list.size(); i++) {
+            BeanUtils.copyProperties(list.get(i), user);
+            System.out.println(user);
+        }
     }
 
 
