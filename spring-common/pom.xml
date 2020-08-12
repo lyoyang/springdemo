@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-common</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <build>
         <finalName>spring-common</finalName>
@@ -35,5 +35,8 @@
             </plugins>
         </pluginManagement>
     </build>
+    <modules>
+        <module>../spring-web</module>
+    </modules>
 
 </project>

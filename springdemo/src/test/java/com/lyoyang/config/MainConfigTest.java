@@ -3,6 +3,7 @@ package com.lyoyang.config;
 
 import com.lyoyang.entity.User;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainConfigTest {
@@ -21,4 +22,17 @@ public class MainConfigTest {
             System.out.println(beanName);
         }
     }
+
+    @Test
+    public void test_copyBean() {
+        User user = new User();
+        user.setName("jim");
+        User u2 = user;
+        BeanUtils.copyProperties(user, u2);
+        user.setName("bob");
+        user.setName(u2.getName());
+        System.out.println(user.toString());
+    }
+
+
 }
